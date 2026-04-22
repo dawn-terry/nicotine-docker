@@ -2,7 +2,7 @@
 server = ('server.slsknet.org', 2242)
 login = mythicc_dawn
 passw = cu23020
-interface = wlan0
+interface =
 ctcpmsgs = False
 autosearch = []
 autoreply = 

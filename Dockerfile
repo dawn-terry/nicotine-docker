@@ -26,11 +26,9 @@ RUN rm -rf \
   /var/lib/apt/lists/* \
   /var/tmp/*
 
+RUN mkdir /data
+
 COPY ./etc /etc
-
-RUN mkdir /home/nicotine/.config/nicotine
-COPY ./config /home/nicotine/.config/nicotine
-
 COPY ./usr /usr
 COPY ./scripts/init.sh /tmp/init.sh
 

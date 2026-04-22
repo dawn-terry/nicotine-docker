@@ -8,6 +8,7 @@ services:
       - PORT=6080
       - PUID=1000
       - PGID=1000
+      - NICOTINE_DATA_HOME=/data
     ports:
       - "6080:6080" # UI port
       - "2234-2239:2234-2239" # Listening port range
