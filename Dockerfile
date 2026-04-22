@@ -17,12 +17,8 @@ RUN apt install -y --no-install-recommends \
   novnc \
   nicotine
 
-RUN useradd -u 1000 -U -d /data -s /bin/false nicotine
+RUN useradd -u 1000 -U -m -d /home/nicotine -s /bin/false nicotine
 RUN usermod -G users nicotine
-RUN mkdir /downloads
-RUN chown nicotine:nicotine /downloads
-
-#RUN chown -R nicotine:nicotine /app
 
 RUN apt-get clean
 RUN rm -rf \
@@ -31,10 +27,13 @@ RUN rm -rf \
   /var/tmp/*
 
 COPY ./etc /etc
+
+RUN mkdir /home/nicotine/.config/nicotine
+COPY ./config /home/nicotine/.config/nicotine
+
 COPY ./usr /usr
 COPY ./scripts/init.sh /tmp/init.sh
 
 EXPOSE 6080/tcp
-VOLUME ["/data","/downloads"]
 
 CMD ["/bin/bash", "-c", "/tmp/init.sh;/usr/bin/supervisord -c /etc/supervisord.conf"]

@@ -4,7 +4,7 @@ services:
     container_name: nicotine
     restart: unless-stopped
     environment:
-      - RESOLUTION=1920X1080
+      - RESOLUTION=1024x768
       - PORT=6080
       - PUID=1000
       - PGID=1000
@@ -12,5 +12,6 @@ services:
       - "6080:6080" # UI port
       - "2234-2239:2234-2239" # Listening port range
     volumes:
-      - /home/user/nicotine/data:/data
-      - /home/user/nicotine/downloads:/downloads
+      - type: bind
+        source: /mnt/data/soulseek
+        target: /data
